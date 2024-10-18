@@ -44,7 +44,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onTaskAdded, completedTasksCount, t
       tags: tags.split(',').map(tag => tag.trim()),
       completed: false,
       uncompleted: false,
-      taskTitle: function (arg0: string, taskTitle: any): import(
+      taskTitle: function (): import(
         "react").ReactNode | Iterable<import("react").ReactNode> {
           throw new Error('Function not implemented.');
       }

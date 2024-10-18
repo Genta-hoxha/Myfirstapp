@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { Task } from '../tasks';
 import './taskitem.css'
 import { useTranslation } from 'react-i18next';
-import t from '../i18n';
+import axios from 'axios';
+
 
 interface TaskListProps {
   tasks: Task[];
@@ -16,7 +17,7 @@ type TranslationKeys = 'title' | 'description' | 'completed' | 'uncompleted' | '
 
 const TaskList: React.FC<TaskListProps> = ({ tasks, onDelete, onToggleComplete, onEdit }) => {
   
-  const { t } = useTranslation<TranslationKeys>();
+
   const sortedTasks = [...tasks].sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
   const [showModal, setShowModal] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState<string | null>(null);
@@ -63,7 +64,7 @@ const Modal: React.FC<{ isOpen: boolean; onClose: () => void; onConfirm: () => v
   return (
     <div className="modal">
       <div className="modal-content">
-        <h4>Confirm Deletion</h4>
+        <h4>(Confirm Deletion')</h4>
         <p>Are you sure you want to delete this task?</p>
         <button onClick={onConfirm} style={{marginRight:'5px'}}>Yes, Delete</button>
    
@@ -86,13 +87,17 @@ const TaskItem: React.FC<{ task: Task; onDelete: (id: string) => void; onToggleC
   const [tags, setTags] = useState(task.tags.join(', '));
 
 
-  const handleSave = () => {
-    onEdit(task.id, { title, description, tags: tags.split(',').map(tag => tag.trim()) });
+
+ 
+  const handleSave = async () => {
+    const updatedTask = { title, description, tags: tags.split(',').map(tag => tag.trim()) };
+    await axios.put(`http://localhost:5000/api/tasks/${task.id}`, updatedTask);
+    
+    onEdit(task.id, updatedTask); // Update local state
     setIsEditing(false);
   };
 
- 
-
+  
   return (
     <div className={`task-card ${task.completed ? 'completed' : ''}`}>
     {task.completed ? (
