@@ -1,0 +1,74 @@
+.task-card {
+    border: 1px solid #dadadd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #dadadd;
+    transition: transform 0.2s;
+  }
+  
+  .task-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .task-card.completed {
+    background-color: #badd79;
+  }
+  
+  .task-card h3 {
+    margin: 0 0 8px;
+    font-size: 30px;
+
+  }
+  
+  .task-card p {
+    margin: 4px 0;
+  }
+  
+  .task-card button {
+    margin-right: 8px;
+    align-items: end;
+  }
+.btn {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: stretch;
+  justify-content: right;
+  }
+
+  h3 {
+    color:#21244d;
+  }
+
+  h2 {
+    font-size: 30px;
+    text-align: center;
+    color:#21244d;
+  }
+
+  .completed-tag {
+    background-color: #4caf50; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+      font-weight: bold;
+      margin-left: 90%;
+  }
+  
+  .uncompleted-tag {
+  background-color: #f44336;   
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+      font-weight: bold;
+      margin-left: 90%;
+ 
+  }
+  .uncompleted-tasks {
+    padding: 20px;
+}
+
